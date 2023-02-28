@@ -1,3 +1,4 @@
+
 import geni.portal as portal
 import geni.rspec.pg as pg
 import geni.rspec.igext as IG
@@ -18,14 +19,14 @@ tour.Description(IG.Tour.TEXT,tourDescription)
 request.addTour(tour)
 
 node = request.XenVM("docker")
-node.cores = 8
-node.ram = 8192
+node.cores = 4
+node.ram = 4096
 node.routable_control_ip = "true" 
 
 bs_landing = node.Blockstore("bs_image", "/image")
 bs_landing.size = "500GB"
   
-node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
+node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU20-64-STD"
 node.routable_control_ip = "true"
 node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
   
